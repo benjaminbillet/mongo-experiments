@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: mongo-experiments
+  mongodb:
+    embedded:
+      version: 4.0.2
+  data:
+    mongodb: # mongodb embedded does not support the 'uri' option, so we have to define each properties
+      host: localhost
+      port: 27017
+      database: test
+      auto-index-creation: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+
+
