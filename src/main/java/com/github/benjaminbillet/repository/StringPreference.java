@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;
@@ -18,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Valid
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class StringPreference extends PreferenceItem {
+public class StringPreference extends PreferenceEntity<String> {
   @NotNull
   private String value;
 }

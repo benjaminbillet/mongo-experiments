@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Map;
 
 @Document(collection = "preferences")
 @Data
@@ -18,7 +18,7 @@ import java.util.List;
 @Valid
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class StringListPreference extends PreferenceEntity<List<String>> {
+public class DictionaryPreference extends PreferenceEntity<Map<String, String>> {
   @NotNull
-  private List<String> value;
+  private Map<String, String> value;
 }

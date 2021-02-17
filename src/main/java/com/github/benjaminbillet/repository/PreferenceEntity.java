@@ -1,8 +1,6 @@
 package com.github.benjaminbillet.repository;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
@@ -13,16 +11,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Data
 @Valid
+@Data
 @SuperBuilder
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Document(collection = "preferences")
 @CompoundIndexes({
-  @CompoundIndex(name = "owner_scope", def = "{'owner': 1, 'scope': 1}"),
-  @CompoundIndex(name = "owner_key", def = "{'owner': 1, 'name': 1}", unique = true)
+  @CompoundIndex(name = "scope_app_owner", def = "{'scope': 1, 'app': 1, 'owner': 1}"),
+  @CompoundIndex(name = "scope_owner", def = "{'scope': 1, 'owner': 1}")
 })
-public abstract class PreferenceItem {
+public abstract class PreferenceEntity<T> {
   @Id
   private String id;
 
@@ -35,4 +35,10 @@ public abstract class PreferenceItem {
 
   @NotBlank
   private String owner;
+
+  private String app;
+
+  public abstract T getValue();
+
+  public abstract void setValue(T value);
 }

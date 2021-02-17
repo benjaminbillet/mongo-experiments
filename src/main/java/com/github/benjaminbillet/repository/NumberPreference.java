@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Valid
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class NumberPreference extends PreferenceItem {
+public class NumberPreference extends PreferenceEntity<Number> {
   @NotNull
   private Number value;
 }
